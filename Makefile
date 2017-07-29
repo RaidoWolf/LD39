@@ -1,5 +1,5 @@
 ##############################
-# Makefile for Ludum Dare 38 #
+# Makefile for Ludum Dare 39 #
 ##############################
 
 # CSS BUILD PIPELINE
@@ -18,8 +18,8 @@
 # NOTE: If you need to use deployment in this file, make sure to set the
 # following environment variables before running make:
 #
-# ld38_remote_production: the RSync remote for production deployment
-# ld38_remote_development: the RSync remote for development deployment
+# ld39_remote_production: the RSync remote for production deployment
+# ld39_remote_development: the RSync remote for development deployment
 
 # CONFIG
 CSS_MINIFIER = yuicompressor
@@ -35,10 +35,10 @@ MINIFY_EXCLUDE = src/lib/%
 REMOTE_SYNCER = rsync
 REMOTE_SYNCER_FLAGS = -avlt --progress --delete --delete-during
 LOCAL_PRODUCTION = ./src/
-REMOTE_PRODUCTION = $(if $(ld38_remote_production), $(ld38_remote_production), ./src/)
+REMOTE_PRODUCTION = $(if $(ld39_remote_production), $(ld39_remote_production), ./src/)
 SYNC_PRODUCTION_FLAGS = --exclude *.scss --exclude .DS_Store --exclude error_log
 LOCAL_DEVELOPMENT = ./src/
-REMOTE_DEVELOPMENT = $(if $(ld38_remote_development), $(ld38_remote_development), ./src/)
+REMOTE_DEVELOPMENT = $(if $(ld39_remote_development), $(ld39_remote_development), ./src/)
 SYNC_DEVELOPMENT_FLAGS = --exclude .DS_Store --exclude error_log
 JS_DEPENDENCY_MANAGER = bower
 JS_DEPENDENCY_MANAGER_INSTALL_FLAGS =
