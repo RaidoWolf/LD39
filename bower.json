@@ -1,0 +1,21 @@
+{
+  "name": "ld39",
+  "homepage": "https://github.com/aebarber/LD39",
+  "authors": [
+    "Alexander Barber <dangerbarber@gmail.com>"
+  ],
+  "description": "Alexander Barber's Ludum Dare 39 Entry",
+  "main": "src/index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser-ce": "^2.7.7"
+  }
+}

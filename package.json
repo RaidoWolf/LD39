@@ -1,0 +1,28 @@
+{
+  "name": "ld39",
+  "version": "1.0.0",
+  "description": "Alexander Barber's Ludum Dare 39 Entry",
+  "main": "src/index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babelify": "^7.3.0",
+    "webpack": "^2.4.1",
+    "webpack-closure-compiler": "^2.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aebarber/LD39.git"
+  },
+  "author": "Alexander Barber",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aebarber/LD39/issues"
+  },
+  "homepage": "https://github.com/aebarber/LD39#readme"
+}
