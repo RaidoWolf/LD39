@@ -14,4 +14,6 @@ export default function create () {
 
     loadingStateData.text = game.add.text(32, 32, 'Loading...', { fill: '#ffffff' });
 
+    game.load.start();
+
 }

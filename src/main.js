@@ -209,6 +209,8 @@ function create() {
     window.loadingStateData = {};
 
     loadingStateData.text = game.add.text(32, 32, 'Loading...', { fill: '#ffffff' });
+
+    game.load.start();
 }
 
 /***/ }),
