@@ -95,15 +95,38 @@ var _gameOver2 = _interopRequireDefault(_gameOver);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var targetWidth = 1280;
+var targetHeight = 960;
+var minimumScale = 0.5;
+
 window.loadingState = _loading2.default;
 window.mainMenuState = _mainMenu2.default;
 window.playingState = _playing2.default;
 window.gameOverState = _gameOver2.default;
 
-window.game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, // game window height
-window.innerHeight * window.devicePixelRatio, // game window width
+window.largestDimension = Math.max(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
+
+var widthScale = 1;
+var heightScale = 1;
+if (window.innerWidth < targetWidth * window.devicePixelRatio) {
+    widthScale = window.innerWidth * window.devicePixelRatio / (targetWidth * window.devicePixelRatio);
+}
+if (window.innerHeight < targetHeight * window.devicePixelRatio) {
+    heightScale = window.innerHeight * window.devicePixelRatio / (targetHeight * window.devicePixelRatio);
+}
+if (widthScale < minimumScale) {
+    widthScale = minimumScale;
+}
+if (heightScale < minimumScale) {
+    heightScale = minimumScale;
+}
+
+window.gameScaleBase = Math.min(widthScale, heightScale);
+
+window.game = new Phaser.Game(Math.floor(targetWidth * window.devicePixelRatio * window.gameScaleBase), // game window height
+Math.floor(targetHeight * window.devicePixelRatio * window.gameScaleBase), // game window width
 Phaser.AUTO, // automatically choose renderer
-'', // initial DOM element (take whole window)
+'game', // initial DOM element (take whole window)
 null, false, // disable canvas transparency
 false // disable anti-aliasing
 );
@@ -114,10 +137,6 @@ game.state.add('playing', _playing2.default);
 game.state.add('gameOverState', _gameOver2.default);
 
 game.state.start('loading'); // start loading screen to bootstrap game
-
-window.largestDimension = window.innerWidth > window.innerHeight ? window.innerWidth * window.devicePixelRatio : window.innerHeight * window.devicePixelRatio;
-
-window.gameScaleBase = largestDimension / 800;
 
 exports.default = game;
 
@@ -208,7 +227,10 @@ function create() {
 
     window.loadingStateData = {};
 
-    loadingStateData.text = game.add.text(32, 32, 'Loading...', { fill: '#ffffff' });
+    loadingStateData.text = game.add.text(32 * gameScaleBase, 32 * gameScaleBase, 'Loading...', {
+        font: String(Math.floor(48 * gameScaleBase)) + 'px Arial',
+        fill: '#ffffff'
+    });
 
     game.load.start();
 }

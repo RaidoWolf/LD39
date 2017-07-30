@@ -12,7 +12,15 @@ export default function create () {
 
     window.loadingStateData = {};
 
-    loadingStateData.text = game.add.text(32, 32, 'Loading...', { fill: '#ffffff' });
+    loadingStateData.text = game.add.text(
+        32 * gameScaleBase,
+        32 * gameScaleBase,
+        'Loading...',
+        {
+            font: String(Math.floor(48 * gameScaleBase)) + 'px Arial',
+            fill: '#ffffff'
+        }
+    );
 
     game.load.start();
 
