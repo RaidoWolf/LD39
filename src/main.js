@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,11 +81,11 @@ var _loading = __webpack_require__(2);
 
 var _loading2 = _interopRequireDefault(_loading);
 
-var _mainMenu = __webpack_require__(3);
+var _mainMenu = __webpack_require__(9);
 
 var _mainMenu2 = _interopRequireDefault(_mainMenu);
 
-var _playing = __webpack_require__(4);
+var _playing = __webpack_require__(10);
 
 var _playing2 = _interopRequireDefault(_playing);
 
@@ -149,16 +149,131 @@ exports.default = gameOverState;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _preload = __webpack_require__(7);
+
+var _preload2 = _interopRequireDefault(_preload);
+
+var _create = __webpack_require__(3);
+
+var _create2 = _interopRequireDefault(_create);
+
+var _update = __webpack_require__(8);
+
+var _update2 = _interopRequireDefault(_update);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function loadingState() {}
 
-loadingState.prototype.preload = function () {};
-loadingState.prototype.create = function () {};
-loadingState.prototype.update = function () {};
+loadingState.prototype.preload = _preload2.default;
+loadingState.prototype.create = _create2.default;
+loadingState.prototype.update = _update2.default;
 
 exports.default = loadingState;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = create;
+
+var _loadStart = __webpack_require__(6);
+
+var _loadStart2 = _interopRequireDefault(_loadStart);
+
+var _fileComplete = __webpack_require__(4);
+
+var _fileComplete2 = _interopRequireDefault(_fileComplete);
+
+var _loadComplete = __webpack_require__(5);
+
+var _loadComplete2 = _interopRequireDefault(_loadComplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function create() {
+
+    game.stage.backgroundColor = '#663399';
+
+    game.load.onLoadStart.add(_loadStart2.default, this);
+    game.load.onFileComplete.add(_fileComplete2.default, this);
+    game.load.onLoadComplete.add(_loadComplete2.default, this);
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = fileComplete;
+function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = loadComplete;
+function loadComplete() {}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = loadStart;
+function loadStart() {}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = preload;
+function preload() {}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = update;
+function update() {}
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -176,7 +291,7 @@ mainMenuState.prototype.update = function () {};
 exports.default = mainMenuState;
 
 /***/ }),
-/* 4 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -194,7 +309,7 @@ playingState.prototype.update = function () {};
 exports.default = playingState;
 
 /***/ }),
-/* 5 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
