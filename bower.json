@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "phaser-ce": "^2.7.7"
+    "phaser-ce": "^2.7.7",
+    "slick-ui": "^0.5.0"
   }
 }

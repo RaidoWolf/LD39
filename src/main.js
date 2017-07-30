@@ -261,10 +261,14 @@ function loadStart() {}
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = preload;
-function preload() {}
+function preload() {
+
+    window.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+    slickUI.load('assets/kenney-theme/kenney.json');
+}
 
 /***/ }),
 /* 8 */
