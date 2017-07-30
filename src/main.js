@@ -95,46 +95,57 @@ var _gameOver2 = _interopRequireDefault(_gameOver);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var targetWidth = 1280;
-var targetHeight = 960;
-var minimumScale = 0.5;
+// config - window size/scaling
+// import states
+window.targetWidth = 1280;
+window.targetHeight = 960;
+window.minimumScale = 0.5;
 
+// globalize state classes
 window.loadingState = _loading2.default;
 window.mainMenuState = _mainMenu2.default;
 window.playingState = _playing2.default;
 window.gameOverState = _gameOver2.default;
 
-window.largestDimension = Math.max(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
+// closure for scaling calculations (maintain aspect ratio, min size, etc.)
+(function () {
 
-var widthScale = 1;
-var heightScale = 1;
-if (window.innerWidth < targetWidth * window.devicePixelRatio) {
-    widthScale = window.innerWidth * window.devicePixelRatio / (targetWidth * window.devicePixelRatio);
-}
-if (window.innerHeight < targetHeight * window.devicePixelRatio) {
-    heightScale = window.innerHeight * window.devicePixelRatio / (targetHeight * window.devicePixelRatio);
-}
-if (widthScale < minimumScale) {
-    widthScale = minimumScale;
-}
-if (heightScale < minimumScale) {
-    heightScale = minimumScale;
-}
+    var widthScale = 1;
+    var heightScale = 1;
 
-window.gameScaleBase = Math.min(widthScale, heightScale);
+    if (window.innerWidth < targetWidth * window.devicePixelRatio) {
+        widthScale = window.innerWidth * window.devicePixelRatio / (targetWidth * window.devicePixelRatio);
+    }
 
+    if (window.innerHeight < targetHeight * window.devicePixelRatio) {
+        heightScale = window.innerHeight * window.devicePixelRatio / (targetHeight * window.devicePixelRatio);
+    }
+
+    if (widthScale < minimumScale) {
+        widthScale = minimumScale;
+    }
+
+    if (heightScale < minimumScale) {
+        heightScale = minimumScale;
+    }
+
+    // multiply all dimensions and coordinates by this
+    window.gameScaleBase = Math.min(widthScale, heightScale);
+})();
+
+// let the games begin
 window.game = new Phaser.Game(Math.floor(targetWidth * window.devicePixelRatio * window.gameScaleBase), // game window height
 Math.floor(targetHeight * window.devicePixelRatio * window.gameScaleBase), // game window width
 Phaser.AUTO, // automatically choose renderer
-'game', // initial DOM element (take whole window)
+'game', // initial DOM element (equivalent to selector '#game');
 null, false, // disable canvas transparency
 false // disable anti-aliasing
 );
 
-game.state.add('loading', _loading2.default);
-game.state.add('mainMenu', _mainMenu2.default);
-game.state.add('playing', _playing2.default);
-game.state.add('gameOverState', _gameOver2.default);
+game.state.add('loading', _loading2.default); // register loading screen state
+game.state.add('mainMenu', _mainMenu2.default); // register main menu screen state
+game.state.add('playing', _playing2.default); // register main gameplay state
+game.state.add('gameOverState', _gameOver2.default); // register game over screen state
 
 game.state.start('loading'); // start loading screen to bootstrap game
 
