@@ -17,14 +17,14 @@ module.exports = {
                                 'env',
                                 {
                                     'targets': {
-                                        'chrome': 50,
-                                        'firefox': 45,
-                                        'edge': 14,
-                                        'ie': 11,
-                                        'safari': 10,
-                                        'ios': 9.3,
-                                        'android': 4.4,
-                                        'opera': 42
+                                        'chrome': '50',
+                                        'firefox': '45',
+                                        'edge': '14',
+                                        'ie': '11',
+                                        'safari': '10',
+                                        'ios': '9.3',
+                                        'android': '4.4',
+                                        'opera': '42'
                                     }
                                 }
                             ]

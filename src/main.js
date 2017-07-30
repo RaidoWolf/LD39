@@ -205,6 +205,10 @@ function create() {
     game.load.onLoadStart.add(_loadStart2.default, this);
     game.load.onFileComplete.add(_fileComplete2.default, this);
     game.load.onLoadComplete.add(_loadComplete2.default, this);
+
+    window.loadingStateData = {};
+
+    loadingStateData.text = game.add.text(32, 32, 'Loading...', { fill: '#ffffff' });
 }
 
 /***/ }),
@@ -228,10 +232,13 @@ function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {}
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = loadComplete;
-function loadComplete() {}
+function loadComplete() {
+
+    loadingStateData.text.setText('Complete!');
+}
 
 /***/ }),
 /* 6 */

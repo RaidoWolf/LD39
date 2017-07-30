@@ -10,4 +10,8 @@ export default function create () {
     game.load.onFileComplete.add(fileComplete, this);
     game.load.onLoadComplete.add(loadComplete, this);
 
+    window.loadingStateData = {};
+
+    loadingStateData.text = game.add.text(32, 32, 'Loading...', { fill: '#ffffff' });
+
 }
