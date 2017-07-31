@@ -1,1 +1,1 @@
-html,body{margin:0;min-width:480px}#game{display:block;margin:20px auto;clear:both;min-width:480px}#game>canvas{margin:auto}
+html,body{margin:0;min-width:480px}#game{display:block;margin:20px auto;clear:both;min-width:480px}#game>canvas{margin:auto;box-shadow:5px 5px 10px rgba(0,0,0,0.5)}
