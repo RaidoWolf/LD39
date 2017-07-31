@@ -45,8 +45,8 @@ export default function create () {
     );
 
     loadingStateData.loadingIcon = game.add.sprite(
-        game.world.height / 2 + 48,
         game.world.width / 2 - 32,
+        game.world.height / 2 + 48,
         'loading-spinner'
     );
 

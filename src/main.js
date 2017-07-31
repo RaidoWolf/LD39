@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -85,7 +85,7 @@ var _mainMenu = __webpack_require__(9);
 
 var _mainMenu2 = _interopRequireDefault(_mainMenu);
 
-var _playing = __webpack_require__(10);
+var _playing = __webpack_require__(13);
 
 var _playing2 = _interopRequireDefault(_playing);
 
@@ -257,7 +257,7 @@ function create() {
 
     loadingStateData.loadingText.setTextBounds(0, game.world.height / 2 - 100, game.world.width, 100);
 
-    loadingStateData.loadingIcon = game.add.sprite(game.world.height / 2 + 48, game.world.width / 2 - 32, 'loading-spinner');
+    loadingStateData.loadingIcon = game.add.sprite(game.world.width / 2 - 32, game.world.height / 2 + 48, 'loading-spinner');
 
     loadingStateData.loadingIcon.animations.add('default');
 
@@ -303,12 +303,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = loadComplete;
 function loadComplete() {
 
-    loadingStateData.loadingText.setText('Complete!');
-    loadingStateData.loadingIcon.loadTexture('loading-complete');
-    window.setTimeout(function () {
-        window.loadingStateData = null;
-        game.state.start('mainMenu');
-    }, 1000);
+    if (game.state.current === 'loading') {
+        loadingStateData.loadingText.setText('Complete!');
+        loadingStateData.loadingIcon.loadTexture('loading-complete');
+        window.setTimeout(function () {
+            window.loadingStateData = null;
+            game.state.start('mainMenu');
+        }, 1000);
+    }
 }
 
 /***/ }),
@@ -364,16 +366,92 @@ function update() {}
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _preload = __webpack_require__(11);
+
+var _preload2 = _interopRequireDefault(_preload);
+
+var _create = __webpack_require__(10);
+
+var _create2 = _interopRequireDefault(_create);
+
+var _update = __webpack_require__(12);
+
+var _update2 = _interopRequireDefault(_update);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function mainMenuState() {}
 
-mainMenuState.prototype.preload = function () {};
-mainMenuState.prototype.create = function () {};
-mainMenuState.prototype.update = function () {};
+mainMenuState.prototype.preload = _preload2.default;
+mainMenuState.prototype.create = _create2.default;
+mainMenuState.prototype.update = _update2.default;
 
 exports.default = mainMenuState;
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = create;
+function create() {
+
+    var title = game.add.sprite(game.world.centerX, game.world.centerY - 80 * gameScaleBase, 'title');
+
+    title.anchor.setTo(0.5, 0.5);
+    title.scale.setTo(gameScaleBase * 4, gameScaleBase * 4);
+
+    var panel;
+    slickUI.add(panel = new SlickUI.Element.Panel(8, game.height - 88, game.width - 16, 80));
+
+    var button;
+    panel.add(button = new SlickUI.Element.Button(0, 0, 140, 80));
+    button.add(new SlickUI.Element.Text(0, 0, 'Play')).center();
+    button.events.onInputUp.add(function () {
+        game.state.start('playing');
+    });
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = preload;
+function preload() {
+
+    game.load.image('title', 'assets/blackout-title.png');
+
+    window.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+    slickUI.load('assets/kenney-theme/kenney.json');
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = update;
+function update() {}
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -391,7 +469,7 @@ playingState.prototype.update = function () {};
 exports.default = playingState;
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
