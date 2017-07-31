@@ -5,15 +5,17 @@ import playingState from './state/playing.js';
 import gameOverState from './state/gameOver.js';
 
 // config - window size/scaling
-window.targetWidth = 1280;
-window.targetHeight = 960;
-window.minimumScale = 0.5;
+window.targetWidth      = 1280; // max-width
+window.targetHeight     = 960;  // max-height
+window.minimumScale     = 0.5;  // minimum scale allowed
+window.horizontalCutOut = 0;    // extra space to leave (horizontal)
+window.verticalCutOut   = 40;   // extra space to leave (vertical)
 
 // globalize state classes
-window.loadingState = loadingState;
-window.mainMenuState = mainMenuState;
-window.playingState = playingState;
-window.gameOverState = gameOverState;
+window.loadingState     = loadingState;
+window.mainMenuState    = mainMenuState;
+window.playingState     = playingState;
+window.gameOverState    = gameOverState;
 
 // closure for scaling calculations (maintain aspect ratio, min size, etc.)
 (function () {
@@ -23,13 +25,13 @@ window.gameOverState = gameOverState;
 
     if (window.innerWidth < targetWidth * window.devicePixelRatio) {
         widthScale =
-            (window.innerWidth * window.devicePixelRatio) /
+            ((window.innerWidth - window.horizontalCutOut) * window.devicePixelRatio) /
             (targetWidth * window.devicePixelRatio);
     }
 
     if (window.innerHeight < targetHeight * window.devicePixelRatio) {
         heightScale =
-            (window.innerHeight * window.devicePixelRatio) /
+            ((window.innerHeight - window.verticalCutOut) * window.devicePixelRatio) /
             (targetHeight * window.devicePixelRatio);
     }
 
@@ -57,9 +59,9 @@ window.game = new Phaser.Game(
     false // disable anti-aliasing
 );
 
-game.state.add('loading', loadingState); // register loading screen state
-game.state.add('mainMenu', mainMenuState); // register main menu screen state
-game.state.add('playing', playingState); // register main gameplay state
+game.state.add('loading',       loadingState); // register loading screen state
+game.state.add('mainMenu',      mainMenuState); // register main menu screen state
+game.state.add('playing',       playingState); // register main gameplay state
 game.state.add('gameOverState', gameOverState); // register game over screen state
 
 game.state.start('loading'); // start loading screen to bootstrap game

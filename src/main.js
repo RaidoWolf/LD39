@@ -97,9 +97,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // config - window size/scaling
 // import states
-window.targetWidth = 1280;
-window.targetHeight = 960;
-window.minimumScale = 0.5;
+window.targetWidth = 1280; // max-width
+window.targetHeight = 960; // max-height
+window.minimumScale = 0.5; // minimum scale allowed
+window.horizontalCutOut = 0; // extra space to leave (horizontal)
+window.verticalCutOut = 40; // extra space to leave (vertical)
 
 // globalize state classes
 window.loadingState = _loading2.default;
@@ -114,11 +116,11 @@ window.gameOverState = _gameOver2.default;
     var heightScale = 1;
 
     if (window.innerWidth < targetWidth * window.devicePixelRatio) {
-        widthScale = window.innerWidth * window.devicePixelRatio / (targetWidth * window.devicePixelRatio);
+        widthScale = (window.innerWidth - window.horizontalCutOut) * window.devicePixelRatio / (targetWidth * window.devicePixelRatio);
     }
 
     if (window.innerHeight < targetHeight * window.devicePixelRatio) {
-        heightScale = window.innerHeight * window.devicePixelRatio / (targetHeight * window.devicePixelRatio);
+        heightScale = (window.innerHeight - window.verticalCutOut) * window.devicePixelRatio / (targetHeight * window.devicePixelRatio);
     }
 
     if (widthScale < minimumScale) {
