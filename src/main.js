@@ -246,11 +246,6 @@ function create() {
     graphics.drawRect(0, game.world.height / 2 - 100, game.world.width, 100);
     graphics.endFill();
 
-    graphics.moveTo(0, game.world.height / 2 + 80);
-    graphics.beginFill('0xffffff', 0.12);
-    graphics.drawRect(0, game.world.height / 2 + 80, game.world.width, 60);
-    graphics.endFill();
-
     loadingStateData.loadingText = game.add.text(0, 0, 'Loading...', {
         fill: '#ffffff',
         fontSize: '48px',
@@ -262,9 +257,22 @@ function create() {
 
     loadingStateData.loadingText.setTextBounds(0, game.world.height / 2 - 100, game.world.width, 100);
 
+    loadingStateData.loadingIcon = game.add.sprite(game.world.height / 2 + 48, game.world.width / 2 - 32, 'loading-spinner');
+
+    loadingStateData.loadingIcon.animations.add('default');
+
+    loadingStateData.loadingIcon.animations.play('default', 10, true);
+
     game.load.onLoadStart.add(_loadStart2.default, this);
     game.load.onFileComplete.add(_fileComplete2.default, this);
     game.load.onLoadComplete.add(_loadComplete2.default, this);
+
+    // begin preloading stuff
+
+    window.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+    slickUI.load('assets/kenney-theme/kenney.json');
+
+    game.load.image('title', 'assets/blackout-title.png');
 
     game.load.start();
 }
@@ -296,6 +304,7 @@ exports.default = loadComplete;
 function loadComplete() {
 
     loadingStateData.loadingText.setText('Complete!');
+    loadingStateData.loadingIcon.loadTexture('loading-complete');
     window.setTimeout(function () {
         window.loadingStateData = null;
         game.state.start('mainMenu');
@@ -328,10 +337,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = preload;
 function preload() {
 
-    window.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
-    slickUI.load('assets/kenney-theme/kenney.json');
-
-    game.load.image('title', 'assets/blackout-title.png');
     game.load.spritesheet('loading-spinner', 'assets/loading-spinner.png', 64, 64);
     game.load.spritesheet('loading-complete', 'assets/loading-complete.png', 64, 64);
 }
