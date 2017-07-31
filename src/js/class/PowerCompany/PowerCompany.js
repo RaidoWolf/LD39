@@ -8,6 +8,9 @@ export default class PowerCompany {
         name = typeof name !== 'undefined' ? name : PowerCompany.generateName();
         initialWorth = typeof initialWorth !== 'undefined' ? initialWorth : 1000000;
 
+        this.name = name;
+        this.availableFunds = initialWorth;
+
     }
 
     get name                () { return this.m_name;                }
@@ -239,8 +242,8 @@ PowerCompany.seg3 = [
 PowerCompany.generateName = function () {
 
     return '' +
-        PowerCompany.seg1[Math.floor(Math.rand() * PowerCompany.seg1.length)] + ' ' +
-        PowerCompany.seg2[Math.floor(Math.rand() * PowerCompany.seg2.length)] + ' ' +
-        PowerCompany.seg3[Math.floor(Math.rand() * PowerCompany.seg3.length)];
+        PowerCompany.seg1[Math.floor(Math.random() * PowerCompany.seg1.length)] + ' ' +
+        PowerCompany.seg2[Math.floor(Math.random() * PowerCompany.seg2.length)] + ' ' +
+        PowerCompany.seg3[Math.floor(Math.random() * PowerCompany.seg3.length)];
 
 };

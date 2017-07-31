@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -77,19 +77,19 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _loading = __webpack_require__(2);
+var _loading = __webpack_require__(5);
 
 var _loading2 = _interopRequireDefault(_loading);
 
-var _mainMenu = __webpack_require__(9);
+var _mainMenu = __webpack_require__(12);
 
 var _mainMenu2 = _interopRequireDefault(_mainMenu);
 
-var _playing = __webpack_require__(13);
+var _playing = __webpack_require__(16);
 
 var _playing2 = _interopRequireDefault(_playing);
 
-var _gameOver = __webpack_require__(1);
+var _gameOver = __webpack_require__(4);
 
 var _gameOver2 = _interopRequireDefault(_gameOver);
 
@@ -161,6 +161,263 @@ exports.default = game;
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _RepairCrew = __webpack_require__(2);
+
+var _RepairCrew2 = _interopRequireDefault(_RepairCrew);
+
+var _Transaction = __webpack_require__(3);
+
+var _Transaction2 = _interopRequireDefault(_Transaction);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PowerCompany = function () {
+    function PowerCompany(name, initialWorth) {
+        _classCallCheck(this, PowerCompany);
+
+        name = typeof name !== 'undefined' ? name : PowerCompany.generateName();
+        initialWorth = typeof initialWorth !== 'undefined' ? initialWorth : 1000000;
+
+        this.name = name;
+        this.availableFunds = initialWorth;
+    }
+
+    _createClass(PowerCompany, [{
+        key: 'earn',
+        value: function earn(amount) {
+
+            this.m_queuedTransactions.push(new _Transaction2.default(amount));
+            return true;
+        }
+    }, {
+        key: 'spend',
+        value: function spend(amount) {
+
+            this.m_queuedTransactions.push(new _Transaction2.default(-amount));
+        }
+    }, {
+        key: 'name',
+        get: function get() {
+            return this.m_name;
+        },
+        set: function set(value) {
+            this.m_name = String(value);
+        }
+    }, {
+        key: 'grossEarnings',
+        get: function get() {
+            return this.m_grossEarnings;
+        },
+        set: function set(value) {
+
+            value = Number(value);
+
+            if (isNaN(value)) {
+                return false;
+            }
+
+            if (value < 0) {
+                value = 0;
+            }
+
+            this.m_grossEarnings = Math.floor(value);
+        }
+    }, {
+        key: 'availableFunds',
+        get: function get() {
+            return this.m_availableFunds;
+        },
+        set: function set(value) {
+
+            value = Number(value);
+
+            if (isNaN(value)) {
+                return false;
+            }
+
+            if (value < 0) {
+                value = 0;
+            }
+
+            this.m_availableFunds = Math.floor(value);
+        }
+    }, {
+        key: 'grossRevenue',
+        get: function get() {
+            return this.m_grossRevenue;
+        },
+        set: function set(value) {
+
+            value = Number(value);
+
+            if (isNaN(value)) {
+                return false;
+            }
+
+            if (value < 0) {
+                value = 0;
+            }
+
+            this.m_grossRevenue = Math.floor(value);
+        }
+    }, {
+        key: 'grossLiability',
+        get: function get() {
+            return this.m_grossLiability;
+        },
+        set: function set(value) {
+
+            value = Number(value);
+
+            if (isNaN(value)) {
+                return false;
+            }
+
+            if (value < 0) {
+                value = 0;
+            }
+
+            this.m_grossLiability = Math.floor(value);
+        }
+    }, {
+        key: 'queuedTransactions',
+        get: function get() {
+            return this.m_queuedTransactions;
+        },
+        set: function set(value) {
+
+            if (Array.isArray(value)) {
+
+                for (var i in value) {
+                    if (!(value[i] instanceof _Transaction2.default)) {
+                        return false;
+                    }
+                }
+
+                this.m_queuedTransactions = value;
+            } else {
+                return false;
+            }
+        }
+    }, {
+        key: 'repairCrewsIdle',
+        get: function get() {
+            return this.m_repairCrewsIdle;
+        },
+        set: function set(value) {
+
+            if (Array.isArray(value)) {
+
+                for (var i in value) {
+                    if (!(value[i] instanceof _RepairCrew2.default)) {
+                        return false;
+                    }
+                }
+
+                this.m_queuedTransactions = value;
+            } else {
+                return false;
+            }
+        }
+    }, {
+        key: 'repairCrewsAway',
+        get: function get() {
+            return this.m_repairCrewsAway;
+        },
+        set: function set(value) {
+
+            if (Array.isArray(value)) {
+
+                for (var i in value) {
+                    if (!(value[i] instanceof _RepairCrew2.default)) {
+                        return false;
+                    }
+                }
+
+                this.m_queuedTransactions = value;
+            } else {
+                return false;
+            }
+        }
+    }]);
+
+    return PowerCompany;
+}();
+
+exports.default = PowerCompany;
+
+
+PowerCompany.prototype.m_name = 'Untitled Power Company';
+PowerCompany.prototype.m_profitMargin = 1.05;
+PowerCompany.prototype.m_grossEarnings = 0;
+PowerCompany.prototype.m_availableFunds = 0;
+PowerCompany.prototype.m_grossRevenue = 0;
+PowerCompany.prototype.m_grossLiability = 0;
+PowerCompany.prototype.m_queuedTransactions = null;
+PowerCompany.prototype.m_repairCrewsIdle = null;
+PowerCompany.prototype.m_repairCrewsAway = null;
+
+PowerCompany.seg1 = ['1337', 'Almighty', 'Beige', 'Blue', 'Chartreuse', 'Earth', 'Flamboyant', 'Furry', 'Green', 'Honorable', 'Imperial', 'Just', 'Legit', 'Lightning', 'Mega', 'Retro', 'Royal', 'Rusty', 'Slippery', 'Speedy', 'Steam-Powered', 'Super', 'The Best', 'The First', 'The Last', 'The Legit', 'Totally Legit', 'Treasonous', 'Undefeatable'];
+PowerCompany.seg2 = ['Beach', 'City', 'Dave\'s', 'Destroyer', 'Empire', 'Fox', 'Redneck', 'Foxes', 'Fish', 'Haxor\'s', 'Lake', 'N00b\'s', 'Moon', 'Mountain', 'Not a Scam', 'Overlords', 'Pete\'s', 'Paul\'s', 'Redneck', 'River', 'Spoon', 'Steve\'s', 'Temple', 'Templar', 'Thor\'s', 'Thunder', 'Valley', 'Wolf', 'Wolves'];
+PowerCompany.seg3 = ['Power', 'Power Company', 'Electric', 'Electric Company', 'Energy', 'Public Utilities', 'Utilities'];
+PowerCompany.generateName = function () {
+
+    return '' + PowerCompany.seg1[Math.floor(Math.random() * PowerCompany.seg1.length)] + ' ' + PowerCompany.seg2[Math.floor(Math.random() * PowerCompany.seg2.length)] + ' ' + PowerCompany.seg3[Math.floor(Math.random() * PowerCompany.seg3.length)];
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RepairCrew = function RepairCrew() {
+    _classCallCheck(this, RepairCrew);
+};
+
+exports.default = RepairCrew;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Transaction = function Transaction() {
+    _classCallCheck(this, Transaction);
+};
+
+exports.default = Transaction;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function gameOverState() {}
@@ -172,7 +429,7 @@ gameOverState.prototype.update = function () {};
 exports.default = gameOverState;
 
 /***/ }),
-/* 2 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -182,15 +439,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _preload = __webpack_require__(7);
+var _preload = __webpack_require__(10);
 
 var _preload2 = _interopRequireDefault(_preload);
 
-var _create = __webpack_require__(3);
+var _create = __webpack_require__(6);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _update = __webpack_require__(8);
+var _update = __webpack_require__(11);
 
 var _update2 = _interopRequireDefault(_update);
 
@@ -205,7 +462,7 @@ loadingState.prototype.update = _update2.default;
 exports.default = loadingState;
 
 /***/ }),
-/* 3 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -216,15 +473,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = create;
 
-var _loadStart = __webpack_require__(6);
+var _loadStart = __webpack_require__(9);
 
 var _loadStart2 = _interopRequireDefault(_loadStart);
 
-var _fileComplete = __webpack_require__(4);
+var _fileComplete = __webpack_require__(7);
 
 var _fileComplete2 = _interopRequireDefault(_fileComplete);
 
-var _loadComplete = __webpack_require__(5);
+var _loadComplete = __webpack_require__(8);
 
 var _loadComplete2 = _interopRequireDefault(_loadComplete);
 
@@ -278,7 +535,7 @@ function create() {
 }
 
 /***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -291,7 +548,7 @@ exports.default = fileComplete;
 function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {}
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -314,7 +571,7 @@ function loadComplete() {
 }
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -327,7 +584,7 @@ exports.default = loadStart;
 function loadStart() {}
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -344,7 +601,7 @@ function preload() {
 }
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -357,7 +614,7 @@ exports.default = update;
 function update() {}
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -367,15 +624,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _preload = __webpack_require__(11);
+var _preload = __webpack_require__(14);
 
 var _preload2 = _interopRequireDefault(_preload);
 
-var _create = __webpack_require__(10);
+var _create = __webpack_require__(13);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _update = __webpack_require__(12);
+var _update = __webpack_require__(15);
 
 var _update2 = _interopRequireDefault(_update);
 
@@ -390,7 +647,7 @@ mainMenuState.prototype.update = _update2.default;
 exports.default = mainMenuState;
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -424,7 +681,7 @@ function create() {
 }
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -443,7 +700,7 @@ function preload() {
 }
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -456,7 +713,7 @@ exports.default = update;
 function update() {}
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -465,16 +722,88 @@ function update() {}
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _preload = __webpack_require__(18);
+
+var _preload2 = _interopRequireDefault(_preload);
+
+var _create = __webpack_require__(17);
+
+var _create2 = _interopRequireDefault(_create);
+
+var _update = __webpack_require__(19);
+
+var _update2 = _interopRequireDefault(_update);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function playingState() {}
 
-playingState.prototype.preload = function () {};
-playingState.prototype.create = function () {};
-playingState.prototype.update = function () {};
+playingState.prototype.preload = _preload2.default;
+playingState.prototype.create = _create2.default;
+playingState.prototype.update = _update2.default;
 
 exports.default = playingState;
 
 /***/ }),
-/* 14 */
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = create;
+
+var _PowerCompany = __webpack_require__(1);
+
+var _PowerCompany2 = _interopRequireDefault(_PowerCompany);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function create() {
+
+    window.playingStateData = {};
+
+    playingStateData.environment = game.add.group();
+    playingStateData.entities = game.add.group();
+    playingStateData.ui = game.add.group();
+
+    window.powerCompany = typeof companyName !== 'undefined' && companyName !== '' ? new _PowerCompany2.default(companyName) : new _PowerCompany2.default();
+
+    console.log(powerCompany.name);
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = preload;
+function preload() {}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = update;
+function update() {}
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
