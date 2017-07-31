@@ -201,6 +201,7 @@ var PowerCompany = function () {
         value: function spend(amount) {
 
             this.m_queuedTransactions.push(new _Transaction2.default(-amount));
+            return true;
         }
     }, {
         key: 'name',
@@ -220,6 +221,7 @@ var PowerCompany = function () {
             value = Number(value);
 
             if (isNaN(value)) {
+                console.warn('REJECTED: grossEarnings must be a number.');
                 return false;
             }
 
@@ -239,6 +241,7 @@ var PowerCompany = function () {
             value = Number(value);
 
             if (isNaN(value)) {
+                console.warn('REJECTED: availableFunds must be a number.');
                 return false;
             }
 
@@ -258,6 +261,7 @@ var PowerCompany = function () {
             value = Number(value);
 
             if (isNaN(value)) {
+                console.warn('REJECTED: grossRevenue must be a number.');
                 return false;
             }
 
@@ -277,6 +281,7 @@ var PowerCompany = function () {
             value = Number(value);
 
             if (isNaN(value)) {
+                console.warn('REJECTED: grossLiability must be a number.');
                 return false;
             }
 
@@ -297,19 +302,21 @@ var PowerCompany = function () {
 
                 for (var i in value) {
                     if (!(value[i] instanceof _Transaction2.default)) {
+                        console.warn('REJECTED: All elements of queuedTransactions must be instances of the Transaction class.');
                         return false;
                     }
                 }
 
                 this.m_queuedTransactions = value;
             } else {
+                console.warn('REJECTED: queuedTransactions must be an array.');
                 return false;
             }
         }
     }, {
-        key: 'repairCrewsIdle',
+        key: 'repairCrews',
         get: function get() {
-            return this.m_repairCrewsIdle;
+            return this.m_repairCrews;
         },
         set: function set(value) {
 
@@ -317,32 +324,14 @@ var PowerCompany = function () {
 
                 for (var i in value) {
                     if (!(value[i] instanceof _RepairCrew2.default)) {
+                        console.warn('REJECTED: All elements of repairCrews must be instances of the RepairCrew class.');
                         return false;
                     }
                 }
 
-                this.m_queuedTransactions = value;
+                this.m_repairCrews = value;
             } else {
-                return false;
-            }
-        }
-    }, {
-        key: 'repairCrewsAway',
-        get: function get() {
-            return this.m_repairCrewsAway;
-        },
-        set: function set(value) {
-
-            if (Array.isArray(value)) {
-
-                for (var i in value) {
-                    if (!(value[i] instanceof _RepairCrew2.default)) {
-                        return false;
-                    }
-                }
-
-                this.m_queuedTransactions = value;
-            } else {
+                console.warn('REJECTED: repairCrews must be an array.');
                 return false;
             }
         }
@@ -361,8 +350,7 @@ PowerCompany.prototype.m_availableFunds = 0;
 PowerCompany.prototype.m_grossRevenue = 0;
 PowerCompany.prototype.m_grossLiability = 0;
 PowerCompany.prototype.m_queuedTransactions = null;
-PowerCompany.prototype.m_repairCrewsIdle = null;
-PowerCompany.prototype.m_repairCrewsAway = null;
+PowerCompany.prototype.m_repairCrews = null;
 
 PowerCompany.seg1 = ['1337', 'Almighty', 'Beige', 'Blue', 'Chartreuse', 'Earth', 'Flamboyant', 'Furry', 'Green', 'Honorable', 'Imperial', 'Just', 'Legit', 'Lightning', 'Mega', 'Retro', 'Royal', 'Rusty', 'Slippery', 'Speedy', 'Steam-Powered', 'Super', 'The Best', 'The First', 'The Last', 'The Legit', 'Totally Legit', 'Treasonous', 'Undefeatable'];
 PowerCompany.seg2 = ['Beach', 'City', 'Dave\'s', 'Destroyer', 'Empire', 'Fox', 'Redneck', 'Foxes', 'Fish', 'Haxor\'s', 'Lake', 'N00b\'s', 'Moon', 'Mountain', 'Not a Scam', 'Overlords', 'Pete\'s', 'Paul\'s', 'Redneck', 'River', 'Spoon', 'Steve\'s', 'Temple', 'Templar', 'Thor\'s', 'Thunder', 'Valley', 'Wolf', 'Wolves'];
