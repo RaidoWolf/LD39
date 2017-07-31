@@ -8,13 +8,13 @@ export default class Road {
 
 }
 
-Road.prototype.speed = 1; // multiplier of "normal speed" whatever that may mean
-Road.prototype.traffic = 1; // multiplier of "normal traffic" (also whatever that may mean)
-Road.prototype.startPoint = null; //this should be an "Intersection" id
-Road.prototype.pathPoints = null; // this should be an array of 2-element arrays of coordinates
-Road.prototype.endPoint = null; // this should be an "Intersection" id
-Road.prototype.pattern = Road.PATTERN_LINEAR;
-Road.prototype.type = Road.TYPE_CITY;
+Road.prototype.m_speed = 1; // multiplier of "normal speed" whatever that may mean
+Road.prototype.m_traffic = 1; // multiplier of "normal traffic" (also whatever that may mean)
+Road.prototype.m_startPoint = null; //this should be an "Intersection" id
+Road.prototype.m_pathPoints = null; // this should be an array of 2-element arrays of coordinates
+Road.prototype.m_endPoint = null; // this should be an "Intersection" id
+Road.prototype.m_pattern = Road.PATTERN_LINEAR;
+Road.prototype.m_type = Road.TYPE_CITY;
 
 // road pattern enum
 Road.PATTERN_LINEAR         = 1;

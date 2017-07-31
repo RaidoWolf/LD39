@@ -232,18 +232,39 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function create() {
 
-    game.stage.backgroundColor = '#663399';
+    window.loadingStateData = {};
+
+    loadingStateData.menu = game.add.group();
+
+    game.stage.backgroundColor = '#083360';
+
+    var graphics = game.add.graphics();
+    loadingStateData.menu.add(graphics);
+
+    graphics.moveTo(0, game.world.height / 2 - 100);
+    graphics.beginFill('0xffffff', 0.25);
+    graphics.drawRect(0, game.world.height / 2 - 100, game.world.width, 100);
+    graphics.endFill();
+
+    graphics.moveTo(0, game.world.height / 2 + 80);
+    graphics.beginFill('0xffffff', 0.12);
+    graphics.drawRect(0, game.world.height / 2 + 80, game.world.width, 60);
+    graphics.endFill();
+
+    loadingStateData.loadingText = game.add.text(0, 0, 'Loading...', {
+        fill: '#ffffff',
+        fontSize: '48px',
+        boundsAlignH: 'center',
+        boundsAlignV: 'middle'
+    });
+
+    loadingStateData.loadingText.setShadow(3, 3, 'rgba(0,0,0,0.75)', 4);
+
+    loadingStateData.loadingText.setTextBounds(0, game.world.height / 2 - 100, game.world.width, 100);
 
     game.load.onLoadStart.add(_loadStart2.default, this);
     game.load.onFileComplete.add(_fileComplete2.default, this);
     game.load.onLoadComplete.add(_loadComplete2.default, this);
-
-    window.loadingStateData = {};
-
-    loadingStateData.text = game.add.text(32 * gameScaleBase, 32 * gameScaleBase, 'Loading...', {
-        font: String(Math.floor(48 * gameScaleBase)) + 'px Arial',
-        fill: '#ffffff'
-    });
 
     game.load.start();
 }
@@ -274,8 +295,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = loadComplete;
 function loadComplete() {
 
-    loadingStateData.text.setText('Complete!');
+    loadingStateData.loadingText.setText('Complete!');
     window.setTimeout(function () {
+        window.loadingStateData = null;
         game.state.start('mainMenu');
     }, 1000);
 }
@@ -308,6 +330,10 @@ function preload() {
 
     window.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
     slickUI.load('assets/kenney-theme/kenney.json');
+
+    game.load.image('title', 'assets/blackout-title.png');
+    game.load.spritesheet('loading-spinner', 'assets/loading-spinner.png', 64, 64);
+    game.load.spritesheet('loading-complete', 'assets/loading-complete.png', 64, 64);
 }
 
 /***/ }),

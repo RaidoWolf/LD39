@@ -1,7 +1,8 @@
 export default function loadComplete () {
 
-    loadingStateData.text.setText('Complete!');
+    loadingStateData.loadingText.setText('Complete!');
     window.setTimeout(function () {
+        window.loadingStateData = null;
         game.state.start('mainMenu');
     }, 1000);
 

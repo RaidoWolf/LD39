@@ -8,7 +8,9 @@ export default class City {
 
 }
 
-City.prototype.name             = 'Unnamed City';
-City.prototype.districts        = null;
-City.prototype.intersections    = null;
-City.prototype.pathfindingGraph = null;
+City.prototype.m_name                   = 'Unnamed City';
+City.prototype.m_districts              = null;
+City.prototype.m_intersections          = null;
+City.prototype.m_pathfindingGraph       = null;
+City.prototype.m_controlIntersection    = null;
+City.prototype.m_powerplants            = null;

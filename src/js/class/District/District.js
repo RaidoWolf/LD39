@@ -7,3 +7,5 @@ export default class District {
     }
 
 }
+
+District.prototype.m_substationIntersection = null;

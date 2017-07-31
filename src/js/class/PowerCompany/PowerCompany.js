@@ -157,6 +157,7 @@ export default class PowerCompany {
 }
 
 PowerCompany.prototype.m_name = 'Untitled Power Company';
+PowerCompany.prototype.m_profitMargin = 1.05;
 PowerCompany.prototype.m_grossEarnings = 0;
 PowerCompany.prototype.m_availableFunds = 0;
 PowerCompany.prototype.m_grossRevenue = 0;
