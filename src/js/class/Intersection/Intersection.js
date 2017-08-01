@@ -8,7 +8,7 @@ export default class Intersection {
 
 }
 
-Intersection.prototype.type = Insersection.TYPE_ENDPOINT;
+Intersection.prototype.type = Intersection.TYPE_ENDPOINT;
 
 // intersection type enum
 Intersection.TYPE_4WAY          = 1; // + shaped (4 roads)

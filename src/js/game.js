@@ -4,6 +4,9 @@ import mainMenuState from './state/mainMenu.js';
 import playingState from './state/playing.js';
 import gameOverState from './state/gameOver.js';
 
+// import map
+import nikolaTeslaCity from './map/NikolaTeslaCity.js';
+
 // config - window size/scaling
 window.targetWidth      = 1280; // max-width
 window.targetHeight     = 960;  // max-height
@@ -16,6 +19,8 @@ window.loadingState     = loadingState;
 window.mainMenuState    = mainMenuState;
 window.playingState     = playingState;
 window.gameOverState    = gameOverState;
+
+window.mapNikolaTeslaCity = nikolaTeslaCity;
 
 // closure for scaling calculations (maintain aspect ratio, min size, etc.)
 (function () {

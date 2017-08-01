@@ -2,7 +2,7 @@ import Intersection from '../class/Intersection/Intersection.js';
 import Road from '../class/Road/Road.js';
 
 // I drew map by hand and then wrote this up manually (an exercise in frustration)
-export default nikolaTeslaCity = {
+var nikolaTeslaCity = {
 
     name: 'Nikola Tesla City',
 
@@ -1682,3 +1682,5 @@ export default nikolaTeslaCity = {
     }
 
 };
+
+export default nikolaTeslaCity;
