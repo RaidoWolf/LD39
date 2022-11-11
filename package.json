@@ -9,7 +9,7 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
     "babelify": "^7.3.0",
-    "webpack": "^2.4.1",
+    "webpack": "^5.75.0",
     "webpack-closure-compiler": "^2.1.4"
   },
   "scripts": {
